@@ -2,14 +2,14 @@
 
 @section('content')
     <br>
-    <a href="/posts" class="btn btn-info">Go Back</a>
+    <a href="/posts" class="btn btn-info"><< Go back </a>
     <div>
         <h1>{{$post->title}}</h1>
     </div>
     <div>
         <p>{{$post->body}}</p>
     </div>    
-    <small>Written on {{$post->created_at}} by {{$post->user->name}}</small>
+    <small>Written on  {{$post->created_at}} by {{$post->user->name}}</small>
     <hr>
     @if (!Auth::guest())
         @if (Auth::user()->id==$post->user_id)
