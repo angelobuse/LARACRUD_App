@@ -18,15 +18,44 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    
 </head>
 <body>
     <div id="app">
-            @include('inc.navbar')
-            <br>
-            <div class="container">
-                @include('inc.messages')
-                @yield('content')
+      @include('inc.navbar')
+
+        @if(!Auth::guest())
+        @include('inc.sidebar') 
+      <div id="wrapper">
+      <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                  <div class="col-lg-12">  
+                    <br>
+                    <div class="container">
+                      <br>
+                        @include('inc.messages')
+                        @yield('content')
+                    </div>
+                  </div>
+                </div>
             </div>
+        </div>
+      <!-- /#page-content-wrapper -->
     </div>
+    <!-- /#wrapper -->
+    </div>
+   @else
+      <br>
+      <br>
+      <div class="container">
+        <br>
+          @include('inc.messages')
+          @yield('content')
+      </div>
+    @endif
 </body>
 </html>

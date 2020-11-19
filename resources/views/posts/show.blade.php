@@ -5,7 +5,7 @@
     <a href="/posts" class="btn btn-info"><< Go back </a>
     <div>
         <h1>{{$post->title}}</h1>
-    </div>
+    </div>  
     <div>
         <p>{{$post->body}}</p>
     </div>    

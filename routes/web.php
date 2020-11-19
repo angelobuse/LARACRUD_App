@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;   
-use App\Http\Controllers\PostsController;   
+use App\Http\Controllers\PostsController; 
+use App\Http\Controllers\UsersController;  
+use App\Http\Controllers\PermissionsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,10 +23,21 @@ Route::get('about', [PagesController::class, 'about']);
 Route::get('services', [PagesController::class, 'services']);
 
 //Auth::routes();
+Auth::routes();
 
 Route::get('home', [PagesController::class, 'home']);
 
+//Posts controller
 Route::resource('posts', PostsController::class);
-Auth::routes();
+
+//Users controller
+Route::resource('users', UsersController::class);
+
+//Roles controller
+Route::resource('roles', RoleController::class);
+
+//Permissions controller
+Route::resource('permissions', PermissionsController::class);
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
