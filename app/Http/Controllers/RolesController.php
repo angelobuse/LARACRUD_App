@@ -3,9 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
-class RoleController extends Controller
+class RolesController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +25,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $roles=Role::get();
+        return view('roles.show')->with('roles', $roles);
     }
 
     /**
@@ -23,7 +36,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return view('roles.create');
     }
 
     /**
@@ -34,7 +47,15 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'role_name' => 'required',
+        ]);
+
+        $role = new Role;
+        $role->name = $request -> input('role_name');
+        $role->save();
+
+        return redirect('/roles')->with('success', 'Role created');
     }
 
     /**
@@ -56,7 +77,8 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $role = Role::find($id);
+        return view('roles.edit')->with('role', $role);
     }
 
     /**
@@ -68,7 +90,15 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'role_name' => 'required',
+        ]);
+
+        $role = Role::find($id);
+        $role->name = $request -> input('role_name');
+        $role->save();
+
+        return redirect('/roles')->with('success', 'Role updated');
     }
 
     /**
@@ -79,6 +109,9 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $role= Role::find($id);
+        $role->delete();
+
+        return redirect('/roles')->with('success', 'Role deleted');
     }
 }

@@ -78,7 +78,8 @@ class PermissionsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $permission = Permission::find($id);
+        return view('permissions.edit')->with('permission', $permission);
     }
 
     /**
@@ -90,7 +91,15 @@ class PermissionsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'permission_name' => 'required',
+        ]);
+
+        $permission = Permission::find($id);
+        $permission->name = $request -> input('permission_name');
+        $permission->save();
+
+        return redirect('/permissions')->with('success', 'Permission updated');
     }
 
     /**
@@ -101,6 +110,10 @@ class PermissionsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+        $permission = Permission::find($id);
+        $permission->delete();
+
+        return redirect('/permissions')->with('success', 'Permission deleted');
     }
 }

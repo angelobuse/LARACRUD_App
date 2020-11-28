@@ -12,7 +12,7 @@
             <a href="/home">Posts</a>
         </li>
         <li>
-            <a href="">Roles</a>
+            <a href="/roles">Roles</a>
         </li>
         <li>
             <a href="/permissions">Permissions</a>
@@ -20,9 +20,9 @@
         <li>
             <a href="/users">Users</a>
         </li>
-        <li>
-            <a href="#">Settings</a>
-        </li>
+        <!--li>
+            <a href="">Settings</a>
+        </li-->
     </ul>
 </div>
 <!-- /#sidebar-wrapper -->

@@ -5,6 +5,8 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\PostsController; 
 use App\Http\Controllers\UsersController;  
 use App\Http\Controllers\PermissionsController;
+use App\Http\Controllers\RolesController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,7 +36,7 @@ Route::resource('posts', PostsController::class);
 Route::resource('users', UsersController::class);
 
 //Roles controller
-Route::resource('roles', RoleController::class);
+Route::resource('roles', RolesController::class);
 
 //Permissions controller
 Route::resource('permissions', PermissionsController::class);
